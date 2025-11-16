@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoyageFlow — Interactive Travel Experience Simulator</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                fontFamily: {
+                    sans: ['Inter', 'sans-serif'],
+                },
+                extend: {
+                    colors: {
+                        voyage: {
+                            primary: '#F8FAFC',
+                            accent: '#007BFF',
+                            'accent-hover': '#0056b3',
+                            text: '#1E293B',
+                            'text-light': '#64748B',
+                            ui: '#E2E8F0',
+                            success: '#10B981',
+                            error: '#EF4444',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <section id="page-1" class="page active">
+        <div class="registration-container">
+            <div class="registration-card">
+                <div class="registration-header">
+                    <div class="logo-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h1>Welcome to VoyageFlow</h1>
+                    <p>Begin your journey by creating your travel profile</p>
+                </div>
+
+                <form id="registrationForm" class="registration-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                        />
+                        <div class="error-message" id="nameError">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                            </svg>
+                            Name cannot be empty
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            placeholder="your.email@example.com"
+                            autocomplete="email"
+                        />
+                        <div class="error-message" id="emailError">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                            </svg>
+                            Please enter a valid email address
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            placeholder="10-digit phone number"
+                            maxlength="10"
+                            autocomplete="tel"
+                        />
+                        <div class="error-message" id="phoneError">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                            </svg>
+                            Phone must be exactly 10 digits
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pin">PIN Code</label>
+                        <input 
+                            type="text" 
+                            id="pin" 
+                            placeholder="6-digit PIN code"
+                            maxlength="6"
+                            autocomplete="postal-code"
+                        />
+                        <div class="error-message" id="pinError">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                            </svg>
+                            PIN must be exactly 6 digits
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span>Continue to Destinations</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="modal-overlay" id="successModal">
+            <div class="modal-box success-modal">
+                <div class="modal-content">
+                    <div class="success-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <h3>Registration Successful!</h3>
+                    <p>Your travel profile has been created. Redirecting to destinations...</p>
+                    <div class="loading-bar">
+                        <div class="loading-progress"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="page-2" class="page">
+        <div class="blog-hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Explore Amazing Destinations</h1>
+                <p class="hero-subtitle">Discover the world's most breathtaking locations</p>
+            </div>
+        </div>
+
+        <nav class="blog-navbar">
+            <div class="nav-container">
+                <div class="nav-brand">VoyageFlow</div>
+                <div class="nav-links">
+                    <a href="#paris" class="nav-link">Paris</a>
+                    <a href="#tokyo" class="nav-link">Tokyo</a>
+                    <a href="#rome" class="nav-link">Rome</a>
+                    <a href="#newyork" class="nav-link">New York</a>
+                    <a href="#dubai" class="nav-link">Dubai</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="blog-content">
+\            <article id="paris" class="destination-section">
+                <div class="destination-content">
+                    <div class="destination-image paris-bg"></div>
+                    <div class="destination-text">
+                        <span class="destination-tag">Europe</span>
+                        <h2>Paris, France</h2>
+                        <p class="destination-subtitle">The City of Lights</p>
+                        <p>The city of lights, romance, and timeless beauty. Explore iconic landmarks like the Eiffel Tower, Louvre Museum, and charming cafés along the Seine. Paris captivates with its art, architecture, and irresistible charm that has inspired countless visitors throughout history.</p>
+                        <div class="destination-features">
+                            <span class="feature-badge">🗼 Eiffel Tower</span>
+                            <span class="feature-badge">🎨 Louvre Museum</span>
+                            <span class="feature-badge">☕ French Cafés</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="tokyo" class="destination-section">
+                <div class="destination-content reverse">
+                    <div class="destination-image tokyo-bg"></div>
+                    <div class="destination-text">
+                        <span class="destination-tag">Asia</span>
+                        <h2>Tokyo, Japan</h2>
+                        <p class="destination-subtitle">Where Tradition Meets Future</p>
+                        <p>A futuristic city blending tradition and technology. Experience neon-lit streets, sacred temples, and some of the best food in the world. From the bustling Shibuya crossing to serene gardens, Tokyo offers an unforgettable contrast of old and new.</p>
+                        <div class="destination-features">
+                            <span class="feature-badge">🏯 Ancient Temples</span>
+                            <span class="feature-badge">🍣 World-Class Cuisine</span>
+                            <span class="feature-badge">🌸 Cherry Blossoms</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="rome" class="destination-section">
+                <div class="destination-content">
+                    <div class="destination-image rome-bg"></div>
+                    <div class="destination-text">
+                        <span class="destination-tag">Europe</span>
+                        <h2>Rome, Italy</h2>
+                        <p class="destination-subtitle">The Eternal City</p>
+                        <p>Walk through history with ancient monuments such as the Colosseum, Roman Forum, and Vatican City. Italy's capital is a timeless masterpiece where every corner reveals centuries of art, culture, and architectural marvels that shaped Western civilization.</p>
+                        <div class="destination-features">
+                            <span class="feature-badge">🏛️ Colosseum</span>
+                            <span class="feature-badge">⛪ Vatican City</span>
+                            <span class="feature-badge">🍝 Italian Cuisine</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="newyork" class="destination-section">
+                <div class="destination-content reverse">
+                    <div class="destination-image newyork-bg"></div>
+                    <div class="destination-text">
+                        <span class="destination-tag">North America</span>
+                        <h2>New York, USA</h2>
+                        <p class="destination-subtitle">The City That Never Sleeps</p>
+                        <p>From Times Square to Central Park and skyscrapers that pierce the clouds, every street tells a story. Experience the energy of Broadway, the diversity of its neighborhoods, and the iconic skyline that has become a symbol of ambition and dreams.</p>
+                        <div class="destination-features">
+                            <span class="feature-badge">🗽 Statue of Liberty</span>
+                            <span class="feature-badge">🌳 Central Park</span>
+                            <span class="feature-badge">🎭 Broadway Shows</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="dubai" class="destination-section">
+                <div class="destination-content">
+                    <div class="destination-image dubai-bg"></div>
+                    <div class="destination-text">
+                        <span class="destination-tag">Middle East</span>
+                        <h2>Dubai, UAE</h2>
+                        <p class="destination-subtitle">Luxury in the Desert</p>
+                        <p>A luxury oasis in the desert. Experience world's tallest buildings, golden beaches, and futuristic architecture. Dubai represents the pinnacle of modern engineering and luxury, offering experiences from indoor skiing to breathtaking desert safaris.</p>
+                        <div class="destination-features">
+                            <span class="feature-badge">🏙️ Burj Khalifa</span>
+                            <span class="feature-badge">🏖️ Luxury Beaches</span>
+                            <span class="feature-badge">🏜️ Desert Safari</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div class="page-transition">
+            <button class="next-page-btn" onclick="navigateTo('page-3')">
+                <span>Plan Your Itinerary</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+            </button>
+        </div>
+    </section>
+
+    <section id="page-3" class="page">
+        <div class="calculator-container">
+            <header class="calculator-header">
+                <button class="back-btn" onclick="navigateTo('page-2')">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                    Back
+                </button>
+                <div class="header-content">
+                    <h1>Build Your Perfect Itinerary</h1>
+                    <p>Select your preferences and watch the price update in real-time</p>
+                </div>
+            </header>
+
+            <div class="calculator-main">
+                <div class="options-column">
+                    
+                    <div class="option-section">
+                        <div class="section-header">
+                            <div class="section-icon">✈️</div>
+                            <div>
+                                <h2>Travel Options</h2>
+                                <p>Choose your preferred travel class</p>
+                            </div>
+                        </div>
+                        
+                        <div class="option-grid">
+                            <label class="option-card">
+                                <input type="checkbox" class="price-checkbox" data-price="500" data-category="travel">
+                                <div class="option-card-content">
+                                    <div class="option-header">
+                                        <span class="option-title">Economy Flight</span>
+                                        <span class="option-price">$500</span>
+                                    </div>
+                                    <p class="option-description">Comfortable and affordable travel</p>
+                                </div>
+                                <div class="check-indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="checkbox" class="price-checkbox" data-price="1200" data-category="travel">
+                                <div class="option-card-content">
+                                    <div class="option-header">
+                                        <span class="option-title">Business Class</span>
+                                        <span class="option-price">$1,200</span>
+                                    </div>
+                                    <p class="option-description">Premium comfort and service</p>
+                                </div>
+                                <div class="check-indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="checkbox" class="price-checkbox" data-price="2500" data-category="travel">
+                                <div class="option-card-content">
+                                    <div class="option-header">
+                                        <span class="option-title">First Class</span>
+                                        <span class="option-price">$2,500</span>
+                                    </div>
+                                    <p class="option-description">Ultimate luxury experience</p>
+                                </div>
+                                <div class="check-indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="option-section">
+                        <div class="section-header">
+                            <div class="section-icon">🏨</div>
+                            <div>
+                                <h2>Accommodation</h2>
+                                <p>Select your hotel preference</p>
+                            </div>
+                        </div>
+                        
+                        <div class="option-grid">
+                            <label class="option-card">
+                                <input type="checkbox" class="price-checkbox" data-price="150" data-category="accommodation">
+                                <div class="option-card-content">
+                                    <div class="option-header">
+                                        <span class="option-title">Budget Hotel</span>
+                                        <span class="option-price">$150/night</span>
+                                    </div>
+                                    <p class="option-description">Clean and comfortable lodging</p>
+                                </div>
+                                <div class="check-indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="checkbox" class="price-checkbox" data-price="350" data-category="accommodation">
+                                <div class="option-card-content">
+                                    <div class="option-header">
+                                        <span class="option-title">4-Star Hotel</span>
+                                        <span class="option-price">$350/night</span>
+                                    </div>
+                                    <p class="option-description">Premium amenities included</p>
+                                </div>
+                                <div class="check-indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="checkbox" class="price-checkbox" data-price="600" data-category="accommodation">
+                                <div class="option-card-content">
+                                    <div class="option-header">
+                                        <span class="option-title">Luxury Resort</span>
+                                        <span class="option-price">$600/night</span>
+                                    </div>
+                                    <p class="option-description">5-star excellence and spa</p>
+                                </div>
+                                <div class="check-indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="option-section">
+                        <div class="section-header">
+                            <div class="section-icon">🍽️</div>
+                            <div>
+                                <h2>Food Packages</h2>
+                                <p>Enhance your culinary experience</p>
+                            </div>
+                        </div>
+                        
+                        <div class="option-grid">
+                            <label class="option-card">
+                                <input type="checkbox" class="price-checkbox" data-price="50" data-category="food">
+                                <div class="option-card-content">
+                                    <div class="option-header">
+                                        <span class="option-title">Breakfast Only</span>
+                                        <span class="option-price">$50/day</span>
+                                    </div>
+                                    <p class="option-description">Start your day right</p>
+                                </div>
+                                <div class="check-indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="checkbox" class="price-checkbox" data-price="120" data-category="food">
+                                <div class="option-card-content">
+                                    <div class="option-header">
+                                        <span class="option-title">All Meals Included</span>
+                                        <span class="option-price">$120/day</span>
+                                    </div>
+                                    <p class="option-description">Breakfast, lunch & dinner</p>
+                                </div>
+                                <div class="check-indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="checkbox" class="price-checkbox" data-price="200" data-category="food">
+                                <div class="option-card-content">
+                                    <div class="option-header">
+                                        <span class="option-title">Gourmet Experience</span>
+                                        <span class="option-price">$200/day</span>
+                                    </div>
+                                    <p class="option-description">Fine dining at top restaurants</p>
+                                </div>
+                                <div class="check-indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="option-section">
+                        <div class="section-header">
+                            <div class="section-icon">🎯</div>
+                            <div>
+                                <h2>Activities & Experiences</h2>
+                                <p>Add exciting adventures to your trip</p>
+                            </div>
+                        </div>
+                        
+                        <div class="option-grid">
+                            <label class="option-card">
+                                <input type="checkbox" class="price-checkbox" data-price="100" data-category="activities">
+                                <div class="option-card-content">
+                                    <div class="option-header">
+                                        <span class="option-title">City Tour</span>
+                                        <span class="option-price">$100</span>
+                                    </div>
+                                    <p class="option-description">Guided exploration of landmarks</p>
+                                </div>
+                                <div class="check-indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="checkbox" class="price-checkbox" data-price="150" data-category="activities">
+                                <div class="option-card-content">
+                                    <div class="option-header">
+                                        <span class="option-title">Adventure Sports</span>
+                                        <span class="option-price">$150</span>
+                                    </div>
+                                    <p class="option-description">Thrilling outdoor activities</p>
+                                </div>
+                                <div class="check-indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="checkbox" class="price-checkbox" data-price="250" data-category="activities">
+                                <div class="option-card-content">
+                                    <div class="option-header">
+                                        <span class="option-title">Cultural Immersion</span>
+                                        <span class="option-price">$250</span>
+                                    </div>
+                                    <p class="option-description">Museums, shows & local experiences</p>
+                                </div>
+                                <div class="check-indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </label>
+
+                            <label class="option-card">
+                                <input type="checkbox" class="price-checkbox" data-price="180" data-category="activities">
+                                <div class="option-card-content">
+                                    <div class="option-header">
+                                        <span class="option-title">Spa & Wellness</span>
+                                        <span class="option-price">$180</span>
+                                    </div>
+                                    <p class="option-description">Relaxation and rejuvenation</p>
+                                </div>
+                                <div class="check-indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="summary-sidebar">
+                    <div class="summary-card">
+                        <h3>Price Summary</h3>
+                        
+                        <div class="summary-breakdown">
+                            <div class="summary-item">
+                                <span>Selected Items</span>
+                                <span id="itemCount">0</span>
+                            </div>
+                            <div class="summary-divider"></div>
+                            <div class="summary-total">
+                                <span>Total Price</span>
+                                <span id="totalPrice">$0.00</span>
+                            </div>
+                        </div>
+
+                        <button class="confirm-btn" id="confirmBtn">
+                            <span>Confirm Selection</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </button>
+
+                        <p class="summary-note">Your selection will be saved for the final confirmation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mobile-summary-footer">
+            <div class="mobile-summary-content">
+                <div class="mobile-price-info">
+                    <span class="mobile-label">Total Price</span>
+                    <span class="mobile-price" id="mobileTotalPrice">$0.00</span>
+                </div>
+                <button class="mobile-confirm-btn" id="mobileConfirmBtn">
+                    <span>Confirm</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="modal-overlay" id="confirmationModal">
+            <div class="modal-box confirmation-modal">
+                <div class="modal-content">
+                    <div class="confirmation-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <h3>Itinerary Confirmed!</h3>
+                    <p>Your trip has been calculated. Your final price is <strong id="modalFinalPrice">$0.00</strong></p>
+                    <button class="modal-action-btn" id="modalNextBtn">
+                        <span>Proceed to Confirmation</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="page-4" class="page">
+        <div class="confirmation-container">
+            <div class="confirmation-content">
+                <div class="confirmation-animation">
+                    <div class="success-checkmark">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <div class="success-circle-anim"></div>
+                </div>
+
+                <h1 class="confirmation-title">Booking Executed Successfully!</h1>
+                <p class="confirmation-subtitle">Thank you for exploring VoyageFlow</p>
+
+                <div class="trip-summary-card">
+                    <h2>Your Journey Summary</h2>
+                    
+                    <div class="summary-details">
+                        <div class="detail-row">
+                            <span class="detail-label">Total Investment</span>
+                            <span class="detail-value" id="finalTotalPrice">$0.00</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Selected Options</span>
+                            <span class="detail-value" id="finalItemCount">0 items</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Booking Reference</span>
+                            <span class="detail-value" id="bookingRef">VF-XXXX-XXXX</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Date</span>
+                            <span class="detail-value" id="bookingDate">-</span>
+                        </div>
+                    </div>
+
+                    <!-- <div class="summary-note-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <p>This is a simulation. No actual booking has been made. VoyageFlow is a demonstration project showcasing interactive web development.</p>
+                    </div> -->
+                </div>
+
+                <div class="confirmation-actions">
+                    <button class="action-btn primary-action" onclick="navigateTo('page-1')">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                        Start Over
+                    </button>
+                    <button class="action-btn secondary-action" onclick="window.print()">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                        </svg>
+                        Print Summary
+                    </button>
+                </div>
+
+                <div class="confirmation-footer">
+                    <div class="social-links">
+                        <p>Share your experience:</p>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon" aria-label="Facebook">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="social-icon" aria-label="Twitter">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="social-icon" aria-label="Instagram">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="footer-text">
+                        <p>&copy; 2025 VoyageFlow. A demo project by Pranjal, Robin, Dhruv, Ayush & Gaurab</p>
+                        <p class="footer-small">Built with HTML, CSS, and JavaScript</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
